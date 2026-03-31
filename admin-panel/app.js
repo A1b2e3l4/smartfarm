@@ -9,7 +9,7 @@
  */
 
 // API Configuration
-const API_URL = 'https://your-smartfarm-backend.onrender.com/api';
+const API_URL = 'https://smartfarm-j2a3.onrender.com/api';
 
 // State
 let currentUser = null;

@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // API Base URL - Change this to your backend URL
 // For local development: 'http://localhost:8000/api'
 // For production: 'https://your-backend-url.com/api'
-export const API_URL = 'https://your-smartfarm-backend.onrender.com/api';
+export const API_URL = 'https://smartfarm-j2a3.onrender.com/api';
 
 // Create Axios instance
 const api = axios.create({

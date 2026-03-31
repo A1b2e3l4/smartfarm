@@ -1,20 +1,35 @@
 <?php
 /**
- * SmartFarm API - Main Entry Point
- * 
- * This file routes all API requests to the appropriate endpoints.
- * 
- * API Structure:
- * - /auth/register - User registration
- * - /auth/login - User login
- * - /users/profile - User profile management
- * - /crops - Crop management
- * - /orders - Order management
- * - /dashboard - Dashboard statistics
- * - /admin/users - User management (admin only)
- * - /admin/stats - Platform statistics (admin only)
+ * SmartFarm API - Main Entry Point (Fixed with CORS & Preflight Support)
  */
 
+// --- 1. CORS CONFIGURATION ---
+// Allow requests from your Vercel frontend
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+
+// --- 2. HANDLE PREFLIGHT REQUESTS ---
+// Browsers send an OPTIONS request before POST/PUT for security. 
+// We must return a 200 OK immediately for these.
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+// --- 3. ERROR HELPER ---
+// Defining this early so the router can use it
+function errorResponse($message, $code = 404) {
+    http_response_code($code);
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'message' => $message
+    ]);
+    exit();
+}
+
+// --- 4. INITIALIZE ---
 require_once 'config/database.php';
 require_once 'config/jwt.php';
 
@@ -24,14 +39,14 @@ $path = parse_url($request_uri, PHP_URL_PATH);
 $path = trim($path, '/');
 $path_parts = explode('/', $path);
 
-// Remove 'api' prefix if present
+// Remove 'api' prefix if present (e.g., /api/auth/login -> /auth/login)
 if (isset($path_parts[0]) && $path_parts[0] === 'api') {
     array_shift($path_parts);
 }
 
 $endpoint = isset($path_parts[0]) ? $path_parts[0] : '';
 
-// Route to appropriate endpoint
+// --- 5. ROUTING LOGIC ---
 switch ($endpoint) {
     case 'auth':
         $action = isset($path_parts[1]) ? $path_parts[1] : '';
@@ -83,46 +98,15 @@ switch ($endpoint) {
             'success' => true,
             'message' => 'Welcome to SmartFarm API',
             'version' => '1.0.0',
+            'status' => 'Online',
             'endpoints' => [
-                'auth' => [
-                    'POST /auth/register' => 'Register new user',
-                    'POST /auth/login' => 'User login'
-                ],
-                'users' => [
-                    'GET /users/profile' => 'Get user profile',
-                    'PUT /users/profile' => 'Update user profile',
-                    'POST /users/profile/image' => 'Upload profile image'
-                ],
-                'crops' => [
-                    'GET /crops' => 'List crops',
-                    'POST /crops' => 'Create new crop (farmer only)',
-                    'GET /crops/:id' => 'Get crop details',
-                    'PUT /crops/:id' => 'Update crop',
-                    'DELETE /crops/:id' => 'Delete crop'
-                ],
-                'orders' => [
-                    'GET /orders' => 'List orders',
-                    'POST /orders' => 'Create new order (buyer only)',
-                    'GET /orders/:id' => 'Get order details',
-                    'PUT /orders/:id' => 'Update order status'
-                ],
-                'dashboard' => [
-                    'GET /dashboard' => 'Get dashboard statistics',
-                    'GET /dashboard/farmer' => 'Get farmer stats',
-                    'GET /dashboard/buyer' => 'Get buyer stats'
-                ],
-                'admin' => [
-                    'GET /admin/users' => 'List all users (admin only)',
-                    'GET /admin/users/:id' => 'Get user details (admin only)',
-                    'PUT /admin/users/:id' => 'Update user (admin only)',
-                    'DELETE /admin/users/:id' => 'Delete user (admin only)',
-                    'GET /admin/stats' => 'Get platform statistics (admin only)'
-                ]
+                'auth' => ['POST /auth/register', 'POST /auth/login'],
+                'admin' => ['GET /admin/users', 'GET /admin/stats']
             ]
         ]);
         break;
         
     default:
-        errorResponse('Endpoint not found', 404);
+        errorResponse('Endpoint not found: ' . $endpoint, 404);
         break;
 }
