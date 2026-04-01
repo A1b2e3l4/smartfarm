@@ -1,0 +1,116 @@
+/// Kenya Counties Data
+class KenyaCounties {
+  KenyaCounties._();
+
+  static const List<String> counties = [
+    'Mombasa',
+    'Kwale',
+    'Kilifi',
+    'Tana River',
+    'Lamu',
+    'Taita-Taveta',
+    'Garissa',
+    'Wajir',
+    'Mandera',
+    'Marsabit',
+    'Isiolo',
+    'Meru',
+    'Tharaka-Nithi',
+    'Embu',
+    'Kitui',
+    'Machakos',
+    'Makueni',
+    'Nyandarua',
+    'Nyeri',
+    'Kirinyaga',
+    'Murang\'a',
+    'Kiambu',
+    'Turkana',
+    'West Pokot',
+    'Samburu',
+    'Trans Nzoia',
+    'Uasin Gishu',
+    'Elgeyo-Marakwet',
+    'Nandi',
+    'Baringo',
+    'Laikipia',
+    'Nakuru',
+    'Narok',
+    'Kajiado',
+    'Kericho',
+    'Bomet',
+    'Kakamega',
+    'Vihiga',
+    'Bungoma',
+    'Busia',
+    'Siaya',
+    'Kisumu',
+    'Homa Bay',
+    'Migori',
+    'Kisii',
+    'Nyamira',
+    'Nairobi',
+  ];
+
+  static const Map<String, List<String>> subCounties = {
+    'Mombasa': ['Changamwe', 'Jomvu', 'Kisauni', 'Likoni', 'Mvita', 'Nyali'],
+    'Kwale': ['Kinango', 'Lungalunga', 'Matuga', 'Msambweni', 'Samburu'],
+    'Kilifi': ['Chonyi', 'Ganze', 'Kaloleni', 'Kauma', 'Kilifi North', 'Kilifi South', 'Kisauni', 'Magarini', 'Malindi', 'Rabai'],
+    'Tana River': ['Bura', 'Galole', 'Garsen', 'Tana Delta', 'Tana North'],
+    'Lamu': ['Lamu East', 'Lamu West', 'Mkomani'],
+    'Taita-Taveta': ['Mwatate', 'Taveta', 'Voi', 'Wundanyi'],
+    'Garissa': ['Balambala', 'Dadaab', 'Fafi', 'Garissa Township', 'Hulugho', 'Ijara', 'Lagdera'],
+    'Wajir': ['Eldas', 'Tarbaj', 'Wajir East', 'Wajir North', 'Wajir South', 'Wajir West'],
+    'Mandera': ['Banissa', 'Lafey', 'Mandera East', 'Mandera North', 'Mandera South', 'Mandera West'],
+    'Marsabit': ['Laisamis', 'Marsabit Central', 'Marsabit North', 'Marsabit South', 'Moyale', 'North Horr', 'Saku'],
+    'Isiolo': ['Garbatulla', 'Isiolo Central', 'Isiolo North', 'Isiolo South', 'Merti'],
+    'Meru': ['Buuri', 'Igembe Central', 'Igembe North', 'Igembe South', 'Imenti Central', 'Imenti North', 'Imenti South', 'Meru Central', 'Tigania East', 'Tigania West'],
+    'Tharaka-Nithi': ['Chuka', 'Igambang\'ombe', 'Maara', 'Meru South', 'Tharaka North', 'Tharaka South'],
+    'Embu': ['Embu East', 'Embu North', 'Embu West', 'Mbeere North', 'Mbeere South', 'Runyenjes'],
+    'Kitui': ['Ikutha', 'Katulani', 'Kisasi', 'Kitui Central', 'Kitui Rural', 'Kitui South', 'Kitui West', 'Kyuso', 'Lower Yatta', 'Matinyani', 'Migwani', 'Mumoni', 'Mutitu', 'Mutitu North', 'Mutomo', 'Mwingi Central', 'Mwingi East', 'Mwingi North', 'Mwingi West', 'Nzambani', 'Thagicu', 'Tseikuru'],
+    'Machakos': ['Athi River', 'Kalama', 'Kangundo', 'Kathiani', 'Machakos Town', 'Masinga', 'Matungulu', 'Mavoko', 'Mwala', 'Yatta'],
+    'Makueni': ['Kaiti', 'Kibwezi East', 'Kibwezi West', 'Kilome', 'Makueni', 'Mbooni East', 'Mbooni West', 'Mukaa', 'Nzaui'],
+    'Nyandarua': ['Kinangop', 'Kipipiri', 'Ndaragwa', 'Ol Kalou', 'Ol Joro Orok'],
+    'Nyeri': ['Kieni East', 'Kieni West', 'Mathira East', 'Mathira West', 'Mukurweini', 'Nyeri Town', 'Othaya', 'Tetu'],
+    'Kirinyaga': ['Gichugu', 'Kirinyaga Central', 'Kirinyaga East', 'Kirinyaga West', 'Mwea East', 'Mwea West'],
+    'Murang\'a': ['Gatanga', 'Kahuro', 'Kandara', 'Kangema', 'Kigumo', 'Kiharu', 'Mathioya', 'Murang\'a Town'],
+    'Kiambu': ['Gatundu North', 'Gatundu South', 'Githunguri', 'Juja', 'Kabete', 'Kiambaa', 'Kiambu Town', 'Kikuyu', 'Lari', 'Limuru', 'Ruiru', 'Thika Town'],
+    'Turkana': ['Kibish', 'Loima', 'Turkana Central', 'Turkana East', 'Turkana North', 'Turkana South', 'Turkana West'],
+    'West Pokot': ['Kacheliba', 'Kapenguria', 'Pokot South', 'Pokot Central', 'Pokot North', 'Sigor'],
+    'Samburu': ['Samburu Central', 'Samburu East', 'Samburu North'],
+    'Trans Nzoia': ['Cherangany', 'Endebess', 'Kiminini', 'Kwanza', 'Saboti'],
+    'Uasin Gishu': ['Ainabkoi', 'Kapseret', 'Kesses', 'Moiben', 'Soy', 'Turbo'],
+    'Elgeyo-Marakwet': ['Keiyo North', 'Keiyo South', 'Marakwet East', 'Marakwet West'],
+    'Nandi': ['Aldai', 'Chesumei', 'Emgwen', 'Mosop', 'Nandi Hills', 'Tinderet'],
+    'Baringo': ['Baringo Central', 'Baringo North', 'Baringo South', 'Eldama Ravine', 'Mogotio', 'Tiaty'],
+    'Laikipia': ['Laikipia Central', 'Laikipia East', 'Laikipia North', 'Laikipia West', 'Nyahururu'],
+    'Nakuru': ['Bahati', 'Gilgil', 'Kuresoi North', 'Kuresoi South', 'Molo', 'Naivasha', 'Nakuru Town East', 'Nakuru Town West', 'Njoro', 'Rongai', 'Subukia'],
+    'Narok': ['Narok East', 'Narok North', 'Narok South', 'Narok West', 'Transmara East', 'Transmara West'],
+    'Kajiado': ['Isinya', 'Kajiado Central', 'Kajiado East', 'Kajiado North', 'Kajiado South', 'Kajiado West', 'Loitokitok'],
+    'Kericho': ['Ainamoi', 'Belgut', 'Bureti', 'Kipkelion East', 'Kipkelion West', 'Soin-Sigowet'],
+    'Bomet': ['Bomet Central', 'Bomet East', 'Chepalungu', 'Konoin', 'Sotik'],
+    'Kakamega': ['Butere', 'Ikolomani', 'Kakamega Central', 'Kakamega East', 'Kakamega North', 'Kakamega South', 'Khwisero', 'Likuyani', 'Lugari', 'Malava', 'Mumias East', 'Mumias West', 'Navakholo', 'Shinyalu'],
+    'Vihiga': ['Emuhaya', 'Hamisi', 'Luanda', 'Sabatia', 'Vihiga'],
+    'Bungoma': ['Bumula', 'Bungoma Central', 'Bungoma East', 'Bungoma North', 'Bungoma South', 'Cheptais', 'Kimilili', 'Mt. Elgon', 'Sirisia', 'Tongaren', 'Webuye East', 'Webuye West'],
+    'Busia': ['Budalangi', 'Butula', 'Funyula', 'Matayos', 'Nambale', 'Teso North', 'Teso South'],
+    'Siaya': ['Alego Usonga', 'Bondo', 'Gem', 'Rarieda', 'Ugenya', 'Ugunja'],
+    'Kisumu': ['Kisumu Central', 'Kisumu East', 'Kisumu West', 'Muhoroni', 'Nyakach', 'Nyando', 'Seme'],
+    'Homa Bay': ['Homa Bay Town', 'Kabondo Kasipul', 'Karachuonyo', 'Kasipul', 'Mbita', 'Ndhiwa', 'Rangwe', 'Suba'],
+    'Migori': ['Awendo', 'Kuria East', 'Kuria West', 'Nyatike', 'Rongo', 'Suna East', 'Suna West', 'Uriri'],
+    'Kisii': ['Bobasi', 'Bonchari', 'Kitutu Chache North', 'Kitutu Chache South', 'Nyaribari Chache', 'Nyaribari Masaba', 'South Mugirango'],
+    'Nyamira': ['Borabu', 'Kitutu Masaba', 'North Mugirango', 'West Mugirango'],
+    'Nairobi': ['Dagoretti North', 'Dagoretti South', 'Embakasi Central', 'Embakasi East', 'Embakasi North', 'Embakasi South', 'Embakasi West', 'Kamukunji', 'Kasarani', 'Kibra', 'Lang\'ata', 'Makadara', 'Mathare', 'Roysambu', 'Ruaraka', 'Starehe', 'Westlands'],
+  };
+
+  static List<String> getSubCounties(String county) {
+    return subCounties[county] ?? [];
+  }
+
+  static List<String> getAllSubCounties() {
+    final List<String> allSubCounties = [];
+    subCounties.forEach((_, subCountiesList) {
+      allSubCounties.addAll(subCountiesList);
+    });
+    return allSubCounties..sort();
+  }
+}

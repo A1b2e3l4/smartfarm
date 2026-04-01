@@ -1,0 +1,48 @@
+# Render Blueprint Configuration
+# SmartFarm Backend Deployment
+
+services:
+  - type: web
+    name: smartfarm-api
+    runtime: docker
+    repo: https://github.com/yourusername/smartfarm
+    branch: main
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: smartfarm-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: smartfarm-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: smartfarm-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: smartfarm-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: smartfarm-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PHP_ENV
+        value: production
+    healthCheckPath: /api/health.php
+    buildFilter:
+      paths:
+        - backend/**
+    autoDeploy: true
+
+databases:
+  - name: smartfarm-db
+    databaseName: smartfarm
+    user: smartfarm
+    plan: free
+    ipAllowList: []
