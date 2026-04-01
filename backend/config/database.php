@@ -1,53 +1,36 @@
 <?php
 /**
- * Database Configuration
- * SmartFarm API - PostgreSQL Database Connection
+ * SmartFarm API - PostgreSQL Connection for Supabase
  */
-
 class Database {
-    private $host;
-    private $port;
-    private $db_name;
-    private $username;
-    private $password;
     private $conn;
 
-    public function __construct() {
-        // Load from environment variables (for production)
-        $this->host = getenv('DB_HOST') ?: 'db.euazwhbpkhsempaliopv.supabase.co';
-        $this->port = getenv('DB_PORT') ?: '5432';
-        $this->db_name = getenv('DB_NAME') ?: 'smartfarm';
-        $this->username = getenv('DB_USER') ?: 'postgres';
-        $this->password = getenv('DB_PASSWORD') ?: '@Muturi123#';
-    }
+    public function getConnection() {
+        $this->conn = null;
 
-    /**
-     * Get database connection
-     * @return PDO|null
-     */
-        public function getConnection() {
-            $this->conn = null;
+        // Load from environment variables if set, otherwise use defaults
+        $host = getenv('DB_HOST') ?: 'db.euazwhbpkhsempaliopv.supabase.co';
+        $port = getenv('DB_PORT') ?: 5432;
+        $db   = getenv('DB_NAME') ?: 'postgres';
+        $user = getenv('DB_USER') ?: 'postgres';
+        $pass = getenv('DB_PASSWORD') ?: '@Muturi123#';
 
-            try {
-                $dsn = "pgsql:host={$this->host};port={$this->port};dbname=postgres;sslmode=require";
+        try {
+            $dsn = "pgsql:host=db.euazwhbpkhsempaliopv.supabase.co;port=5432;dbname=postgres;sslmode=require";
 
-                $this->conn = new PDO($dsn, $this->username, $this->password, [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                ]);
+            $this->conn = new PDO($dsn, $user, $pass, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
 
-                return $this->conn;
-
-            } catch(PDOException $e) {
-                error_log("Database Connection Error: " . $e->getMessage());
-                return null;
-            }
+        } catch(PDOException $e) {
+            error_log("Database Connection Error: " . $e->getMessage());
+            return null;
         }
 
-    /**
-     * Test database connection
-     * @return bool
-     */
+        return $this->conn;
+    }
+
     public function testConnection() {
         $conn = $this->getConnection();
         return $conn !== null;
