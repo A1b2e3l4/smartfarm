@@ -13,11 +13,11 @@ services:
     ports:
       - "8080:80"
     environment:
-      - DB_HOST=db
+      - DB_HOST=db.euazwhbpkhsempaliopv.supabase.co
       - DB_PORT=5432
       - DB_NAME=smartfarm
       - DB_USER=postgres
-      - DB_PASSWORD=postgres
+      - DB_PASSWORD=@Muturi123#
       - JWT_SECRET=your-local-development-secret-key-min-32-chars
       - PHP_ENV=development
     volumes:

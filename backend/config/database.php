@@ -25,22 +25,24 @@ class Database {
      * Get database connection
      * @return PDO|null
      */
-    public function getConnection() {
-        $this->conn = null;
+        public function getConnection() {
+            $this->conn = null;
 
-        try {
-            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name}";
-            $this->conn = new PDO($dsn, $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            $this->conn->exec("SET NAMES 'UTF8'");
-        } catch(PDOException $e) {
-            error_log("Database Connection Error: " . $e->getMessage());
-            return null;
+            try {
+                $dsn = "pgsql:host={$this->host};port={$this->port};dbname=postgres;sslmode=require";
+
+                $this->conn = new PDO($dsn, $this->username, $this->password, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]);
+
+                return $this->conn;
+
+            } catch(PDOException $e) {
+                error_log("Database Connection Error: " . $e->getMessage());
+                return null;
+            }
         }
-
-        return $this->conn;
-    }
 
     /**
      * Test database connection
