@@ -7,6 +7,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
 
+<Directory /var/www/html/api>
+    Options -Indexes +FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
 # CORS
 <IfModule mod_headers.c>
     Header always set Access-Control-Allow-Origin "*"
