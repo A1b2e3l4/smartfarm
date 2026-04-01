@@ -14,11 +14,11 @@ class Database {
 
     public function __construct() {
         // Load from environment variables (for production)
-        $this->host = getenv('DB_HOST') ?: 'localhost';
+        $this->host = getenv('DB_HOST') ?: 'db.euazwhbpkhsempaliopv.supabase.co';
         $this->port = getenv('DB_PORT') ?: '5432';
         $this->db_name = getenv('DB_NAME') ?: 'smartfarm';
         $this->username = getenv('DB_USER') ?: 'postgres';
-        $this->password = getenv('DB_PASSWORD') ?: 'password';
+        $this->password = getenv('DB_PASSWORD') ?: '@Muturi123#';
     }
 
     /**
