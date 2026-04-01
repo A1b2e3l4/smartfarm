@@ -1,33 +1,33 @@
 <?php
-/**
- * SmartFarm API - PostgreSQL Connection for Supabase
- */
 class Database {
+    private $host;
+    private $port;
+    private $db_name;
+    private $username;
+    private $password;
     private $conn;
+
+    public function __construct() {
+        $this->host = getenv('DB_HOST') ?: 'db.euazwhbpkhsempaliopv.supabase.co';
+        $this->port = getenv('DB_PORT') ?: '5432';
+        $this->db_name = getenv('DB_NAME') ?: 'postgres';
+        $this->username = getenv('DB_USER') ?: 'postgres';
+        $this->password = getenv('DB_PASSWORD') ?: '@Muturi123#';
+    }
 
     public function getConnection() {
         $this->conn = null;
-
-        // Load from environment variables if set, otherwise use defaults
-        $host = getenv('DB_HOST') ?: 'db.euazwhbpkhsempaliopv.supabase.co';
-        $port = getenv('DB_PORT') ?: 5432;
-        $db   = getenv('DB_NAME') ?: 'postgres';
-        $user = getenv('DB_USER') ?: 'postgres';
-        $pass = getenv('DB_PASSWORD') ?: '@Muturi123#';
-
         try {
-            $dsn = "pgsql:host=db.euazwhbpkhsempaliopv.supabase.co;port=5432;dbname=postgres;sslmode=require";
-
-            $this->conn = new PDO($dsn, $user, $pass, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            ]);
-
-        } catch(PDOException $e) {
+            // SSL required for Supabase
+            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};sslmode=require";
+            $this->conn = new PDO($dsn, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $this->conn->exec("SET NAMES 'UTF8'");
+        } catch (PDOException $e) {
             error_log("Database Connection Error: " . $e->getMessage());
             return null;
         }
-
         return $this->conn;
     }
 

@@ -1,14 +1,13 @@
-# SmartFarm API - Fixed .htaccess
+# SmartFarm API - Clean .htaccess
 
-# Enable rewrite engine for clean URLs
 RewriteEngine On
 
-# Redirect all requests to index.php if not a real file/directory
+# Redirect to index.php if file/directory doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
 
-# Enable CORS
+# CORS
 <IfModule mod_headers.c>
     Header always set Access-Control-Allow-Origin "*"
     Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
@@ -17,8 +16,3 @@ RewriteRule ^ index.php [QSA,L]
 
 # Disable directory listing
 Options -Indexes
-
-# Protect hidden files
-<FilesMatch "^\.">
-    Require all denied
-</FilesMatch>
