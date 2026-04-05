@@ -1,0 +1,21 @@
+{
+  "name": "SmartFarm Kenya",
+  "short_name": "SmartFarm",
+  "description": "A production-ready agricultural platform for farmers and buyers with crop disease detection, market prices, and role-based management.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#39FF14",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/smartfarm/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/seed/smartfarm/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

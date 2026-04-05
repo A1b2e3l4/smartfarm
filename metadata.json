@@ -1,0 +1,9 @@
+{
+  "name": "SmartFarm",
+  "description": "A production-ready agricultural platform for farmers and buyers with crop disease detection, market prices, and role-based management.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
